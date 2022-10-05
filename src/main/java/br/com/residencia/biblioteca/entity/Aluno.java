@@ -43,8 +43,8 @@ public class Aluno {
 	@Column(name = "cidade")
 	private String cidade;
 	
-	@OneToMany(mappedBy = "alunos")
-	private Set<Emprestimo> emprestimo;
+	@OneToMany(mappedBy = "aluno")
+	private Set<Emprestimo> emprestimos;
 
 	public int getNumeroMatriculaAluno() {
 		return numeroMatriculaAluno;
@@ -118,11 +118,12 @@ public class Aluno {
 		this.cidade = cidade;
 	}
 
-	public Set<Emprestimo> getEmprestimo() {
-		return emprestimo;
+	public Set<Emprestimo> getEmprestimos() {
+		return emprestimos;
 	}
 
-	public void setEmprestimo(Set<Emprestimo> emprestimo) {
-		this.emprestimo = emprestimo;
+	public void setEmprestimos(Set<Emprestimo> emprestimos) {
+		this.emprestimos = emprestimos;
 	}
+
 }

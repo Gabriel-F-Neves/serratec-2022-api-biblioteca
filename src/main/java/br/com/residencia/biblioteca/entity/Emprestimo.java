@@ -37,7 +37,7 @@ public class Emprestimo {
 	
 	@OneToOne
 	@JoinColumn(name = "codigolivro", referencedColumnName = "codigolivro")
-	Livro livro;
+	private Livro livro;
 
 	public int getCodigoEmprestimo() {
 		return codigoEmprestimo;
@@ -85,5 +85,13 @@ public class Emprestimo {
 
 	public void setLivro(Livro livro) {
 		this.livro = livro;
+	}
+
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
 	}
 }
