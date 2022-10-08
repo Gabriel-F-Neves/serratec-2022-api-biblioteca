@@ -17,7 +17,8 @@ public class LivroService {
 	}
 	
 	public Livro getLivroById(Integer id) {
-		return livroRepository.findById(id).get();		
+		//return livroRepository.findById(id).get();
+		return livroRepository.findById(id).orElse(null);
 	}
 	
 	public Livro saveLivro(Livro livro) {
