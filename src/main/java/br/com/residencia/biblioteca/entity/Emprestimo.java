@@ -12,6 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class,
+		property = "codigoEmprestimo")
 @Entity
 @Table (name = "emprestimo")
 public class Emprestimo {
@@ -29,15 +35,15 @@ public class Emprestimo {
 	
 	@Column(name = "valoremprestimo")
 	private BigDecimal valorEmprestimo;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "numeromatriculaaluno", referencedColumnName = "numeromatriculaaluno")
 	private Aluno aluno;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "codigolivro", referencedColumnName = "codigolivro")
 	private Livro livro;
-
+	
 	public int getCodigoEmprestimo() {
 		return codigoEmprestimo;
 	}
@@ -69,7 +75,7 @@ public class Emprestimo {
 	public void setValorEmprestimo(BigDecimal valorEmprestimo) {
 		this.valorEmprestimo = valorEmprestimo;
 	}
-
+	
 	public Aluno getAlunos() {
 		return aluno;
 	}
@@ -77,7 +83,7 @@ public class Emprestimo {
 	public void setAlunos(Aluno aluno) {
 		this.aluno = aluno;
 	}
-
+	
 	public Livro getLivro() {
 		return livro;
 	}
@@ -93,4 +99,5 @@ public class Emprestimo {
 	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
 	}
+	
 }

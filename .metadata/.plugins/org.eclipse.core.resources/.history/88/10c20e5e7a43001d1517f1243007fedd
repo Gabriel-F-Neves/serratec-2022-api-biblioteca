@@ -1,0 +1,37 @@
+package br.com.residencia.biblioteca.entity;
+
+import java.time.Instant;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table (name = "livros")
+public class Livro {
+		
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	  @Column(name = "codigolivro")
+	  private int codigoLivro;
+	  
+	  @Column(name = "nomelivro")
+	  private String nomeLivro;
+	  
+	  @Column(name = "nomeautor")
+	  private String nomeAutor;
+	  
+	  @Column(name = "datalancamento")
+	  private Instant dataLancamento;
+	  
+	  @Column(name = "codigoisbn")
+	  private int codigoIsbn;
+	  
+	  @ManyToOne
+	  private Editora editora;
+	  
+}

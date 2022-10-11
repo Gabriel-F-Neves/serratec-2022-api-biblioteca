@@ -11,38 +11,44 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class,
+		property = "numeroMatriculaAluno")
 @Entity
-@Table (name = "alunos")
+@Table(name = "alunos")
 public class Aluno {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "numeromatriculaaluno")
 	private int numeroMatriculaAluno;
-	
+
 	@Column(name = "nome")
 	private String nome;
-	
+
 	@Column(name = "datanascimento")
 	private Instant dataNascimento;
-	
+
 	@Column(name = "cpf")
 	private String cpf;
-	
+
 	@Column(name = "logradouro")
 	private String logradouro;
-	
+
 	@Column(name = "numerologradouro")
 	private String numeroLogradouro;
-	
+
 	@Column(name = "complemento")
 	private String complemento;
-	
+
 	@Column(name = "bairro")
 	private String bairro;
-	
+
 	@Column(name = "cidade")
 	private String cidade;
-	
+
 	@OneToMany(mappedBy = "aluno")
 	private Set<Emprestimo> emprestimos;
 
