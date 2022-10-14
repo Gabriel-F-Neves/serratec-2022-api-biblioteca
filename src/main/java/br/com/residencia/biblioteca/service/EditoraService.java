@@ -1,10 +1,14 @@
 package br.com.residencia.biblioteca.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import br.com.residencia.biblioteca.dto.EditoraDTO;
 import br.com.residencia.biblioteca.entity.Editora;
+import br.com.residencia.biblioteca.mapper.EditoraMapper;
 import br.com.residencia.biblioteca.repository.EditoraRepository;
 
 @Service
@@ -12,8 +16,19 @@ public class EditoraService {
 	@Autowired
 	EditoraRepository editoraRepository;
 	
+	@Autowired
+	EditoraMapper editoraMapper;
+	
 	public List<Editora> getAllEditoras(){
 		return editoraRepository.findAll();
+	}
+	
+	public List<EditoraDTO> getAllEditorasDTO(){
+		List<EditoraDTO> editorasDTO = new ArrayList<>();
+		for(Editora editora : editoraRepository.findAll()) {
+			editorasDTO.add(editoraMapper.paraDto(editora));
+		}
+		return editorasDTO;
 	}
 	
 	public Editora getEditoraById(Integer id) {
@@ -23,6 +38,18 @@ public class EditoraService {
 	
 	public Editora saveEditora(Editora editora) {
 		return editoraRepository.save(editora);
+	}
+	
+	public EditoraDTO saveEditoraDTO(EditoraDTO editoraDTO) {
+		Editora editora = new Editora();
+		editora.setNome(editoraDTO.getNome());
+		
+		Editora novaEditora = editoraRepository.save(editora);
+		EditoraDTO novaEditoraDTO = new EditoraDTO();
+		
+		novaEditoraDTO.setCodigoEditora(novaEditora.getCodigoEditora());
+		novaEditoraDTO.setNome(novaEditora.getNome());
+		return novaEditoraDTO;
 	}
 	
 	public Editora updateEditora(Editora editora, Integer id) {
