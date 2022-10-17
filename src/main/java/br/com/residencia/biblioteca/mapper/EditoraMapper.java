@@ -1,3 +1,4 @@
+/*
 package br.com.residencia.biblioteca.mapper;
 
 import org.springframework.stereotype.Component;
@@ -25,3 +26,4 @@ public class EditoraMapper {
 		return editora;
 	}
 }
+*/

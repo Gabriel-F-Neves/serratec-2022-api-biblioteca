@@ -2,14 +2,12 @@ package br.com.residencia.biblioteca.dto;
 
 import java.time.Instant;
 
-import br.com.residencia.biblioteca.entity.Aluno;
-
-
 public class AlunoDTO {
 	private int numeroMatriculaAluno;
 	private String nome;
 	private Instant dataNascimento;
 	private String cpf;
+	private String logradouro;
 	private String numeroLogradouro;
 	private String complemento;
 	private String bairro;
@@ -20,16 +18,18 @@ public class AlunoDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public AlunoDTO(Aluno aluno) {
+	public AlunoDTO(int numeroMatriculaAluno, String nome, Instant dataNascimento, String cpf, String logradouro,
+			String numeroLogradouro, String complemento, String bairro, String cidade) {
 		super();
-		this.numeroMatriculaAluno = aluno.getNumeroMatriculaAluno();
-		this.nome = aluno.getNome();
-		this.dataNascimento = aluno.getDataNascimento();
-		this.cpf = aluno.getCpf();
-		this.numeroLogradouro = aluno.getNumeroLogradouro();
-		this.complemento = aluno.getComplemento();
-		this.bairro = aluno.getBairro();
-		this.cidade = aluno.getCidade();
+		this.numeroMatriculaAluno = numeroMatriculaAluno;
+		this.nome = nome;
+		this.dataNascimento = dataNascimento;
+		this.cpf = cpf;
+		this.logradouro = logradouro;
+		this.numeroLogradouro = numeroLogradouro;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.cidade = cidade;
 	}
 
 	public int getNumeroMatriculaAluno() {
@@ -62,6 +62,14 @@ public class AlunoDTO {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public String getLogradouro() {
+		return logradouro;
+	}
+
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
 	}
 
 	public String getNumeroLogradouro() {

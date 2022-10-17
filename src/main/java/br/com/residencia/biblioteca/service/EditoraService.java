@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.residencia.biblioteca.dto.EditoraDTO;
 import br.com.residencia.biblioteca.entity.Editora;
-import br.com.residencia.biblioteca.mapper.EditoraMapper;
+//import br.com.residencia.biblioteca.mapper.EditoraMapper;
 import br.com.residencia.biblioteca.repository.EditoraRepository;
 
 @Service
@@ -16,8 +16,8 @@ public class EditoraService {
 	@Autowired
 	EditoraRepository editoraRepository;
 	
-	@Autowired
-	EditoraMapper editoraMapper;
+	//@Autowired
+	//EditoraService editoraService;
 	
 	public List<Editora> getAllEditoras(){
 		return editoraRepository.findAll();
@@ -26,7 +26,7 @@ public class EditoraService {
 	public List<EditoraDTO> getAllEditorasDTO(){
 		List<EditoraDTO> editorasDTO = new ArrayList<>();
 		for(Editora editora : editoraRepository.findAll()) {
-			editorasDTO.add(editoraMapper.paraDto(editora));
+			editorasDTO.add(this.toDTO(editora));
 		}
 		return editorasDTO;
 	}
@@ -41,15 +41,42 @@ public class EditoraService {
 	}
 	
 	public EditoraDTO saveEditoraDTO(EditoraDTO editoraDTO) {
-		Editora editora = new Editora();
-		editora.setNome(editoraDTO.getNome());
-		
+		Editora editora = toEntidade(editoraDTO);
 		Editora novaEditora = editoraRepository.save(editora);
-		EditoraDTO novaEditoraDTO = new EditoraDTO();
 		
-		novaEditoraDTO.setCodigoEditora(novaEditora.getCodigoEditora());
-		novaEditoraDTO.setNome(novaEditora.getNome());
-		return novaEditoraDTO;
+		EditoraDTO editoraAtualizadaDTO = toDTO(novaEditora);		
+		return editoraAtualizadaDTO;
+	}
+
+	public EditoraDTO updateEditoraDTO(EditoraDTO editoraDTO, Integer id) {
+		Editora editoraExistenteNoBanco = getEditoraById(id);
+		EditoraDTO editoraAtualizadaDTO = new EditoraDTO();
+
+		if(editoraExistenteNoBanco != null) {
+			
+			editoraExistenteNoBanco = toEntidade(editoraDTO);
+			
+			Editora editoraAtualizada = editoraRepository.save(editoraExistenteNoBanco);
+			
+			editoraAtualizadaDTO = toDTO(editoraAtualizada);
+		}
+		return editoraAtualizadaDTO;
+	}
+	
+	private Editora toEntidade (EditoraDTO editoraDTO) {
+		Editora editora = new Editora();
+		
+		editora.setNome(editoraDTO.getNome());
+		return editora;
+	}
+	
+	private EditoraDTO toDTO(Editora editora) {
+		EditoraDTO editoraDTO = new EditoraDTO();
+			
+		editoraDTO.setCodigoEditora(editora.getCodigoEditora());
+		editoraDTO.setNome(editora.getNome());
+		
+		return editoraDTO;
 	}
 	
 	public Editora updateEditora(Editora editora, Integer id) {
