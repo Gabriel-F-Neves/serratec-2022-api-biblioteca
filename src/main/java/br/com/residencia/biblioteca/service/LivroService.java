@@ -6,14 +6,23 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.residencia.biblioteca.dto.EmprestimoDTO;
 import br.com.residencia.biblioteca.dto.LivroDTO;
+import br.com.residencia.biblioteca.entity.Emprestimo;
 import br.com.residencia.biblioteca.entity.Livro;
+import br.com.residencia.biblioteca.repository.EmprestimoRepository;
 import br.com.residencia.biblioteca.repository.LivroRepository;
 
 @Service
 public class LivroService {
 	@Autowired
 	LivroRepository livroRepository;
+	
+	@Autowired
+	EmprestimoRepository emprestimoRepository;
+	
+	@Autowired
+	EmprestimoService emprestimoService;
 	
 	public List<Livro> getAllLivros(){
 		return livroRepository.findAll();
@@ -59,18 +68,18 @@ public class LivroService {
 		return livroAtualizadoDTO;
 	}
 	
-	private Livro toEntidade (LivroDTO livroDTO) {
+	public Livro toEntidade (LivroDTO livroDTO) {
 		Livro livro = new Livro();
 		
 		livro.setNomeLivro(livroDTO.getNomeLivro());
 		livro.setNomeAutor(livroDTO.getNomeAutor());
 		livro.setDataLancamento(livroDTO.getDataLancamento());
-		livro.setCodigoIsbn(livroDTO.getCodigoIsbn());
+		livro.setCodigoIsbn(livroDTO.getCodigoIsbn());		
 		
 		return livro;
 	}
 	
-	private LivroDTO toDTO(Livro livro) {
+	public LivroDTO toDTO(Livro livro) {
 		LivroDTO livroDTO = new LivroDTO();
 			
 		livroDTO.setCodigoLivro(livro.getCodigoLivro());
@@ -97,5 +106,27 @@ public class LivroService {
 	public Livro deleteLivro(Integer id) {
 		livroRepository.deleteById(id);
 		return getLivroById(id);
+	}
+	
+	public List<LivroDTO> getAllLivrosEmprestimosDTO(){
+		List<Livro> listaLivro = livroRepository.findAll();
+		List<LivroDTO> listaLivroDTO = new ArrayList<>();
+		
+		for(Livro livro : listaLivro) {
+			LivroDTO livroDTO = toDTO(livro);
+			List<Emprestimo> listaEmprestimos = new ArrayList<>();
+			List<EmprestimoDTO> listaEmprestimosDTO = new ArrayList<>();
+			
+			listaEmprestimos = emprestimoRepository.findByLivro(livro);
+			
+			for(Emprestimo emprestimo : listaEmprestimos) {
+				EmprestimoDTO emprestimoDTO = emprestimoService.toDTO(emprestimo);
+				listaEmprestimosDTO.add(emprestimoDTO);
+			}
+			livroDTO.setListaEmprestimosDTO(listaEmprestimosDTO);
+			listaLivroDTO.add(livroDTO);
+		}
+		
+		return listaLivroDTO;
 	}
 }

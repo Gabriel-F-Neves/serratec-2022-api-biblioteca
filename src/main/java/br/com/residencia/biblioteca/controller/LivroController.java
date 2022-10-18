@@ -34,6 +34,11 @@ public class LivroController {
 		return new ResponseEntity<>(livroService.getAllLivrosDTO(), HttpStatus.OK);	
 	}
 	
+	@GetMapping("/livro-emprestimos")
+	public ResponseEntity<List<LivroDTO>> getAllLivrosEmprestimosDTO(){
+		return new ResponseEntity<>(livroService.getAllLivrosEmprestimosDTO(), HttpStatus.OK);	
+	}
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<Livro> getLivroById(@PathVariable Integer id) {
 		Livro livro = livroService.getLivroById(id);

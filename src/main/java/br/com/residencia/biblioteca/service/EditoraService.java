@@ -7,17 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.residencia.biblioteca.dto.EditoraDTO;
+import br.com.residencia.biblioteca.dto.LivroDTO;
 import br.com.residencia.biblioteca.entity.Editora;
+import br.com.residencia.biblioteca.entity.Livro;
 //import br.com.residencia.biblioteca.mapper.EditoraMapper;
 import br.com.residencia.biblioteca.repository.EditoraRepository;
+import br.com.residencia.biblioteca.repository.LivroRepository;
 
 @Service
 public class EditoraService {
 	@Autowired
 	EditoraRepository editoraRepository;
 	
-	//@Autowired
-	//EditoraService editoraService;
+	@Autowired
+	LivroRepository livroRepository;
+	
+	@Autowired
+	LivroService livroService;
 	
 	public List<Editora> getAllEditoras(){
 		return editoraRepository.findAll();
@@ -67,6 +73,7 @@ public class EditoraService {
 		Editora editora = new Editora();
 		
 		editora.setNome(editoraDTO.getNome());
+		
 		return editora;
 	}
 	
@@ -92,5 +99,27 @@ public class EditoraService {
 	public Editora deleteEditora(Integer id) {
 		editoraRepository.deleteById(id);
 		return getEditoraById(id);
+	}
+	
+	public List<EditoraDTO> getAllEditorasLivrosDTO(){
+		List<Editora> listaEditora = editoraRepository.findAll();
+		List<EditoraDTO> listaEditoraDTO = new ArrayList<>();
+		
+		
+		for(Editora editora : listaEditora) {
+			EditoraDTO editoraDTO = toDTO(editora);
+			List<Livro> listaLivros = new ArrayList<>();
+			List<LivroDTO> listaLivrosDTO = new ArrayList<>();
+			
+			listaLivros = livroRepository.findByEditora(editora);
+			for(Livro livro : listaLivros) {
+				LivroDTO livroDTO = livroService.toDTO(livro);
+				listaLivrosDTO.add(livroDTO);
+			}
+			editoraDTO.setListaLivrosDTO(listaLivrosDTO);
+			
+			listaEditoraDTO.add(editoraDTO);
+		}
+		return listaEditoraDTO;
 	}
 }

@@ -34,6 +34,11 @@ public class EditoraController {
 		return new ResponseEntity<>(editoraService.getAllEditorasDTO(), HttpStatus.OK);
 	}
 	
+	@GetMapping("/editora-livros")
+	public ResponseEntity<List<EditoraDTO>> getAllEditorasLivrosDTO(){
+		return new ResponseEntity<>(editoraService.getAllEditorasLivrosDTO(), HttpStatus.OK);
+	}
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<Editora> getEditoraById(@PathVariable Integer id) {
 	Editora editora = editoraService.getEditoraById(id);

@@ -34,6 +34,11 @@ public class AlunoController {
 		return new ResponseEntity<>(alunoService.getAllAlunosDTO(), HttpStatus.OK);	
 	}
 	
+	@GetMapping("/aluno-emprestimos")
+	public ResponseEntity<List<AlunoDTO>> getAllAlunosEmprestimosDTO(){
+		return new ResponseEntity<>(alunoService.getAllAlunosEmprestimosDTO(), HttpStatus.OK);	
+	}
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<Aluno> getAlunoById(@PathVariable Integer id) {
 		Aluno aluno = alunoService.getAlunoById(id);

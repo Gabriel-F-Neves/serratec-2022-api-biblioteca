@@ -7,13 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.residencia.biblioteca.dto.AlunoDTO;
+import br.com.residencia.biblioteca.dto.EmprestimoDTO;
 import br.com.residencia.biblioteca.entity.Aluno;
+import br.com.residencia.biblioteca.entity.Emprestimo;
 import br.com.residencia.biblioteca.repository.AlunoRepository;
+import br.com.residencia.biblioteca.repository.EmprestimoRepository;
+
 
 @Service
 public class AlunoService {
 	@Autowired
 	AlunoRepository alunoRepository;
+	
+	@Autowired
+	EmprestimoRepository emprestimoRepository;
+	
+	@Autowired
+	EmprestimoService emprestimoService;
 	
 	public List<Aluno> getAllAlunos(){
 		return alunoRepository.findAll();
@@ -112,4 +122,24 @@ public class AlunoService {
 		return getAlunoById(id);
 	}
 	
+	public List<AlunoDTO> getAllAlunosEmprestimosDTO(){
+		List<Aluno> listaAluno = alunoRepository.findAll();
+		List<AlunoDTO> listaAlunoDTO = new ArrayList<>();
+		
+		for(Aluno aluno : listaAluno) {
+			AlunoDTO alunoDTO = toDTO(aluno);
+			List<Emprestimo> listaEmprestimos = new ArrayList<>();
+			List<EmprestimoDTO> listaEmprestimosDTO = new ArrayList<>();
+			
+			listaEmprestimos = emprestimoRepository.findByAluno(aluno);
+			for(Emprestimo emprestimo : listaEmprestimos) {
+				EmprestimoDTO emprestimoDTO = emprestimoService.toDTO(emprestimo);
+				listaEmprestimosDTO.add(emprestimoDTO);
+			}
+			alunoDTO.setListaEmprestimosDTO(listaEmprestimosDTO);
+			listaAlunoDTO.add(alunoDTO);
+		}
+		
+		return listaAlunoDTO;
+	}
 }

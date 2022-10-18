@@ -59,7 +59,7 @@ public class EmprestimoService {
 		return emprestimoAtualizadoDTO;
 	}
 	
-	private Emprestimo toEntidade (EmprestimoDTO emprestimoDTO) {
+	public Emprestimo toEntidade (EmprestimoDTO emprestimoDTO) {
 		Emprestimo emprestimo = new Emprestimo();
 		
 		emprestimo.setDataEmprestimo(emprestimoDTO.getDataEmprestimo());
@@ -70,7 +70,7 @@ public class EmprestimoService {
 		return emprestimo;
 	}
 	
-	private EmprestimoDTO toDTO (Emprestimo emprestimo) {
+	public EmprestimoDTO toDTO (Emprestimo emprestimo) {
 		EmprestimoDTO emprestimoDTO = new EmprestimoDTO();
 		
 		emprestimoDTO.setCodigoEmprestimo(emprestimo.getCodigoEmprestimo());

@@ -1,6 +1,7 @@
 package br.com.residencia.biblioteca.dto;
 
 import java.time.Instant;
+import java.util.List;
 
 public class LivroDTO {
 	  private int codigoLivro;	  
@@ -8,6 +9,7 @@ public class LivroDTO {
 	  private String nomeAutor;	  
 	  private Instant dataLancamento;
 	  private int codigoIsbn;
+	  private List<EmprestimoDTO> listaEmprestimosDTO;
 	  
 	public LivroDTO() {
 		super();
@@ -62,5 +64,12 @@ public class LivroDTO {
 	public void setCodigoIsbn(int codigoIsbn) {
 		this.codigoIsbn = codigoIsbn;
 	}
-	  
+
+	public List<EmprestimoDTO> getListaEmprestimosDTO() {
+		return listaEmprestimosDTO;
+	}
+
+	public void setListaEmprestimosDTO(List<EmprestimoDTO> listaEmprestimosDTO) {
+		this.listaEmprestimosDTO = listaEmprestimosDTO;
+	}
 }
