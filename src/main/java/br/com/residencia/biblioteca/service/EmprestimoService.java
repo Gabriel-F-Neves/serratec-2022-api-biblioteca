@@ -64,7 +64,7 @@ public class EmprestimoService {
 		
 		emprestimo.setDataEmprestimo(emprestimoDTO.getDataEmprestimo());
 		emprestimo.setDataEntrega(emprestimoDTO.getDataEntrega());
-		emprestimo.setValorEmprestimo(emprestimoDTO.getValorEmprestimo());
+		//emprestimo.setValorEmprestimo(emprestimoDTO.getValorEmprestimo());
 		
 		
 		return emprestimo;
@@ -76,7 +76,7 @@ public class EmprestimoService {
 		emprestimoDTO.setCodigoEmprestimo(emprestimo.getCodigoEmprestimo());
 		emprestimoDTO.setDataEmprestimo(emprestimo.getDataEmprestimo());
 		emprestimoDTO.setDataEntrega(emprestimo.getDataEntrega());
-		emprestimoDTO.setValorEmprestimo(emprestimo.getValorEmprestimo());
+		//emprestimoDTO.setValorEmprestimo(emprestimo.getValorEmprestimo());
 		
 		
 		return emprestimoDTO;

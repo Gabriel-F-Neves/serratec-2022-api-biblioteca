@@ -73,13 +73,13 @@ public class AlunoService {
 		Aluno aluno = new Aluno();
 		
 		aluno.setNome(alunoDTO.getNome());
-		aluno.setDataNascimento(alunoDTO.getDataNascimento());
+		//aluno.setDataNascimento(alunoDTO.getDataNascimento());
 		aluno.setCpf(alunoDTO.getCpf());
-		aluno.setLogradouro(alunoDTO.getLogradouro());
-		aluno.setNumeroLogradouro(alunoDTO.getNumeroLogradouro());
-		aluno.setComplemento(alunoDTO.getComplemento());
-		aluno.setBairro(alunoDTO.getBairro());
-		aluno.setCidade(alunoDTO.getCidade());
+		//aluno.setLogradouro(alunoDTO.getLogradouro());
+		//aluno.setNumeroLogradouro(alunoDTO.getNumeroLogradouro());
+		//aluno.setComplemento(alunoDTO.getComplemento());
+		//aluno.setBairro(alunoDTO.getBairro());
+		//aluno.setCidade(alunoDTO.getCidade());
 		
 		return aluno;
 	}
@@ -89,13 +89,13 @@ public class AlunoService {
 			
 		alunoDTO.setNumeroMatriculaAluno(aluno.getNumeroMatriculaAluno());
 		alunoDTO.setNome(aluno.getNome());
-		alunoDTO.setDataNascimento(aluno.getDataNascimento());
+		//alunoDTO.setDataNascimento(aluno.getDataNascimento());
 		alunoDTO.setCpf(aluno.getCpf());
-		alunoDTO.setLogradouro(aluno.getLogradouro());
-		alunoDTO.setNumeroLogradouro(aluno.getNumeroLogradouro());
-		alunoDTO.setComplemento(aluno.getComplemento());
-		alunoDTO.setBairro(aluno.getBairro());
-		alunoDTO.setCidade(aluno.getCidade());
+		//alunoDTO.setLogradouro(aluno.getLogradouro());
+		//alunoDTO.setNumeroLogradouro(aluno.getNumeroLogradouro());
+		//alunoDTO.setComplemento(aluno.getComplemento());
+		//alunoDTO.setBairro(aluno.getBairro());
+		//alunoDTO.setCidade(aluno.getCidade());
 		
 		return alunoDTO;
 	}

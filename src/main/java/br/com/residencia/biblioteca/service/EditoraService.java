@@ -66,10 +66,11 @@ public class EditoraService {
 		EditoraDTO editoraAtualizadaDTO = toDTO(novaEditora);		
 		return editoraAtualizadaDTO;
 	}
-
+	
 	public EditoraDTO updateEditoraDTO(EditoraDTO editoraDTO, Integer id) {
 		Editora editoraExistenteNoBanco = getEditoraById(id);
 		EditoraDTO editoraAtualizadaDTO = new EditoraDTO();
+		editoraDTO.setCodigoEditora(id);
 
 		if(editoraExistenteNoBanco != null) {
 			
@@ -82,10 +83,26 @@ public class EditoraService {
 		return editoraAtualizadaDTO;
 	}
 	
+	/*
+	public EditoraDTO updateEditoraDTO(EditoraDTO editoraDTO, Integer id) {
+		Editora editoraExistenteNoBanco = getEditoraById(id);
+		EditoraDTO editoraAtualizadaDTO = new EditoraDTO();
+		
+		if(editoraExistenteNoBanco != null) {
+			editoraExistenteNoBanco.setNome(editoraDTO.getNome());
+			Editora editoraAtualizada = editoraRepository.save(editoraExistenteNoBanco);
+			
+			editoraAtualizadaDTO.setCodigoEditora(editoraAtualizada.getCodigoEditora());
+			editoraAtualizadaDTO.setNome(editoraAtualizada.getNome());
+		}
+		return editoraAtualizadaDTO;
+	}
+	*/
 	private Editora toEntidade (EditoraDTO editoraDTO) {
 		Editora editora = new Editora();
 		
 		editora.setNome(editoraDTO.getNome());
+		editora.setCodigoEditora(editoraDTO.getCodigoEditora());
 		
 		return editora;
 	}

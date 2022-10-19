@@ -7,7 +7,7 @@ public class EmprestimoDTO {
 	private int codigoEmprestimo;
 	private Instant dataEmprestimo;
 	private Instant dataEntrega;
-	private BigDecimal valorEmprestimo;
+	//private BigDecimal valorEmprestimo;
 	
 	public EmprestimoDTO() {
 		super();
@@ -20,7 +20,7 @@ public class EmprestimoDTO {
 		this.codigoEmprestimo = codigoEmprestimo;
 		this.dataEmprestimo = dataEmprestimo;
 		this.dataEntrega = dataEntrega;
-		this.valorEmprestimo = valorEmprestimo;
+		//this.valorEmprestimo = valorEmprestimo;
 	}
 
 	public int getCodigoEmprestimo() {
@@ -46,12 +46,12 @@ public class EmprestimoDTO {
 	public void setDataEntrega(Instant dataEntrega) {
 		this.dataEntrega = dataEntrega;
 	}
-
+	/*
 	public BigDecimal getValorEmprestimo() {
 		return valorEmprestimo;
 	}
 
 	public void setValorEmprestimo(BigDecimal valorEmprestimo) {
 		this.valorEmprestimo = valorEmprestimo;
-	}
+	}*/
 }
