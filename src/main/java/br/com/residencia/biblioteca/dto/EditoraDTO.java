@@ -42,4 +42,10 @@ public class EditoraDTO {
 		this.listaLivrosDTO = listaLivrosDTO;
 	}
 
+	@Override
+	public String toString() {
+		return "EditoraDTO [codigoEditora=" + codigoEditora + ", nome=" + nome + ", listaLivrosDTO=" + listaLivrosDTO
+				+ "]";
+	}
+
 }

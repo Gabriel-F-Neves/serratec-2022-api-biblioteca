@@ -29,6 +29,9 @@ public class EditoraService {
 	@Autowired
 	LivroService livroService;
 	
+	@Autowired
+	EmailService emailService;
+	
 	public List<Editora> getAllEditoras(){
 		return editoraRepository.findAll();
 	}
@@ -70,6 +73,7 @@ public class EditoraService {
 	public EditoraDTO updateEditoraDTO(EditoraDTO editoraDTO, Integer id) {
 		Editora editoraExistenteNoBanco = getEditoraById(id);
 		EditoraDTO editoraAtualizadaDTO = new EditoraDTO();
+		editoraDTO.setCodigoEditora(id);
 
 		if(editoraExistenteNoBanco != null) {
 			
@@ -79,6 +83,7 @@ public class EditoraService {
 			
 			editoraAtualizadaDTO = toDTO(editoraAtualizada);
 		}
+		emailService.sendEmail("gab@yahoo.com", "Teste de envio de email", editoraAtualizadaDTO.toString());
 		return editoraAtualizadaDTO;
 	}
 	
@@ -86,6 +91,7 @@ public class EditoraService {
 		Editora editora = new Editora();
 		
 		editora.setNome(editoraDTO.getNome());
+		editora.setCodigoEditora(editoraDTO.getCodigoEditora());
 		
 		return editora;
 	}
