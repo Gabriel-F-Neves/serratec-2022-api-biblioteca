@@ -38,7 +38,6 @@ public class AlunoService {
 	}
 	
 	public Aluno getAlunoById(Integer id) {
-		//return alunoRepository.findById(id).get();
 		return alunoRepository.findById(id).orElse(null);
 	}
 	
@@ -57,6 +56,7 @@ public class AlunoService {
 	public AlunoDTO updateAlunoDTO(AlunoDTO alunoDTO, Integer id) {
 		Aluno alunoExistenteNoBanco = getAlunoById(id);
 		AlunoDTO alunoAtualizadoDTO = new AlunoDTO();
+		alunoDTO.setNumeroMatriculaAluno(id);
 
 		if(alunoExistenteNoBanco != null) {
 			
@@ -72,14 +72,9 @@ public class AlunoService {
 	private Aluno toEntidade (AlunoDTO alunoDTO) {
 		Aluno aluno = new Aluno();
 		
+		aluno.setNumeroMatriculaAluno(alunoDTO.getNumeroMatriculaAluno());
 		aluno.setNome(alunoDTO.getNome());
-		//aluno.setDataNascimento(alunoDTO.getDataNascimento());
 		aluno.setCpf(alunoDTO.getCpf());
-		//aluno.setLogradouro(alunoDTO.getLogradouro());
-		//aluno.setNumeroLogradouro(alunoDTO.getNumeroLogradouro());
-		//aluno.setComplemento(alunoDTO.getComplemento());
-		//aluno.setBairro(alunoDTO.getBairro());
-		//aluno.setCidade(alunoDTO.getCidade());
 		
 		return aluno;
 	}
@@ -89,13 +84,7 @@ public class AlunoService {
 			
 		alunoDTO.setNumeroMatriculaAluno(aluno.getNumeroMatriculaAluno());
 		alunoDTO.setNome(aluno.getNome());
-		//alunoDTO.setDataNascimento(aluno.getDataNascimento());
 		alunoDTO.setCpf(aluno.getCpf());
-		//alunoDTO.setLogradouro(aluno.getLogradouro());
-		//alunoDTO.setNumeroLogradouro(aluno.getNumeroLogradouro());
-		//alunoDTO.setComplemento(aluno.getComplemento());
-		//alunoDTO.setBairro(aluno.getBairro());
-		//alunoDTO.setCidade(aluno.getCidade());
 		
 		return alunoDTO;
 	}
@@ -109,7 +98,6 @@ public class AlunoService {
 		alunoExistenteNoBanco.setComplemento(aluno.getComplemento());
 		alunoExistenteNoBanco.setCpf(aluno.getCpf());
 		alunoExistenteNoBanco.setDataNascimento(aluno.getDataNascimento());
-	//	alunoExistenteNoBanco.setEmprestimos(aluno.getEmprestimos());
 		alunoExistenteNoBanco.setLogradouro(aluno.getLogradouro());
 		alunoExistenteNoBanco.setNome(aluno.getNome());
 		alunoExistenteNoBanco.setNumeroLogradouro(aluno.getNumeroLogradouro());

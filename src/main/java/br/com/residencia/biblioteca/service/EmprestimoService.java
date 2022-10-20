@@ -28,7 +28,6 @@ public class EmprestimoService {
 	}
 	
 	public Emprestimo getEmprestimoById(Integer id) {
-		//return emprestimoRepository.findById(id).get();
 		return emprestimoRepository.findById(id).orElse(null);
 	}
 	
@@ -47,6 +46,7 @@ public class EmprestimoService {
 	public EmprestimoDTO updateEmprestimoDTO(EmprestimoDTO emprestimoDTO, Integer id) {
 		Emprestimo emprestimoExistenteNoBanco = getEmprestimoById(id);
 		EmprestimoDTO emprestimoAtualizadoDTO = new EmprestimoDTO();
+		emprestimoDTO.setCodigoEmprestimo(id);
 
 		if(emprestimoExistenteNoBanco != null) {
 			
@@ -62,10 +62,9 @@ public class EmprestimoService {
 	public Emprestimo toEntidade (EmprestimoDTO emprestimoDTO) {
 		Emprestimo emprestimo = new Emprestimo();
 		
+		emprestimo.setCodigoEmprestimo(emprestimoDTO.getCodigoEmprestimo());
 		emprestimo.setDataEmprestimo(emprestimoDTO.getDataEmprestimo());
 		emprestimo.setDataEntrega(emprestimoDTO.getDataEntrega());
-		//emprestimo.setValorEmprestimo(emprestimoDTO.getValorEmprestimo());
-		
 		
 		return emprestimo;
 	}
@@ -76,8 +75,6 @@ public class EmprestimoService {
 		emprestimoDTO.setCodigoEmprestimo(emprestimo.getCodigoEmprestimo());
 		emprestimoDTO.setDataEmprestimo(emprestimo.getDataEmprestimo());
 		emprestimoDTO.setDataEntrega(emprestimo.getDataEntrega());
-		//emprestimoDTO.setValorEmprestimo(emprestimo.getValorEmprestimo());
-		
 		
 		return emprestimoDTO;
 	}
