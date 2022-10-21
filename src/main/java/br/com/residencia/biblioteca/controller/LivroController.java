@@ -42,8 +42,9 @@ public class LivroController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Livro> getLivroById(@PathVariable Integer id) {
+		Livro livro = new Livro();
 		try {
-		Livro livro = livroService.getLivroById(id);
+		livro = livroService.getLivroById(id);
 		//if(null != livro)
 			return new ResponseEntity<>(livro, HttpStatus.OK);
 		}catch (Exception e) {
