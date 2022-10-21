@@ -43,7 +43,7 @@ public class EditoraController {
 	public ResponseEntity<List<EditoraDTO>> getAllEditorasLivrosDTO(){
 		return new ResponseEntity<>(editoraService.getAllEditorasLivrosDTO(), HttpStatus.OK);
 	}
-	
+	/*
 	@GetMapping("/{id}")
 	public ResponseEntity<Editora> getEditoraById(@PathVariable Integer id) {
 	Editora editora = editoraService.getEditoraById(id);
@@ -52,7 +52,13 @@ public class EditoraController {
 	else
 		return new ResponseEntity<>(editora, HttpStatus.NOT_FOUND);
 	}
-	
+	*/
+	@GetMapping("/{id}")
+	public Editora getEditoraById(@PathVariable Integer id) {
+		Editora editora = editoraService.getEditoraById(id);
+		return editora;
+	}
+		
 	@GetMapping("/consulta-cnpj/{cnpj}") //33014556000196
 	public ResponseEntity<ConsultaCnpjDTO> consultaCnpjApiExterna(@PathVariable String cnpj){
 		ConsultaCnpjDTO consultaCnpjDTO = editoraService.consultaCnpjApiExterna(cnpj);

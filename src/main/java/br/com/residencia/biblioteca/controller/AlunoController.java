@@ -47,7 +47,7 @@ public class AlunoController {
 		else
 			return new ResponseEntity<>(aluno, HttpStatus.NOT_FOUND);
 	}
-		
+	
 	@PostMapping
 	public ResponseEntity<Aluno> saveAluno(@RequestBody Aluno aluno) {
 		return new ResponseEntity<>(alunoService.saveAluno(aluno),HttpStatus.CREATED);

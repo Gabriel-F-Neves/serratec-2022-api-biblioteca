@@ -38,7 +38,7 @@ public class LivroController {
 	public ResponseEntity<List<LivroDTO>> getAllLivrosEmprestimosDTO(){
 		return new ResponseEntity<>(livroService.getAllLivrosEmprestimosDTO(), HttpStatus.OK);	
 	}
-	
+	/*
 	@GetMapping("/{id}")
 	public ResponseEntity<Livro> getLivroById(@PathVariable Integer id) {
 		Livro livro = livroService.getLivroById(id);
@@ -46,6 +46,12 @@ public class LivroController {
 			return new ResponseEntity<>(livro, HttpStatus.OK);
 		else
 			return new ResponseEntity<>(livro, HttpStatus.NOT_FOUND);
+	}
+	*/
+	@GetMapping("/{id}")
+	public Livro getLivroById(@PathVariable Integer id) {
+		Livro livro = livroService.getLivroById(id);
+		return livro;
 	}
 	
 	@PostMapping
