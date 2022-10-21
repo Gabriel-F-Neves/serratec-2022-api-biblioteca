@@ -22,4 +22,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
+	
+	@ExceptionHandler(NoSuchElementFoundException.class)
+	public final ResponseEntity<Object> handleNoSuchElementFoundException(NoSuchElementFoundException ex, WebRequest request){
+		List<String> detalhes = new ArrayList<>();
+		detalhes.add(ex.getLocalizedMessage());
+		HttpStatus httpStatus = HttpStatus.NOT_FOUND;
+		ErrorResponse error = new ErrorResponse(httpStatus.value(),"Registro não encontrado", detalhes);
+		
+		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+	}
 }

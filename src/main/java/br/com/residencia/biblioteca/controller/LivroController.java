@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.residencia.biblioteca.dto.LivroDTO;
 import br.com.residencia.biblioteca.entity.Livro;
+import br.com.residencia.biblioteca.exception.NoSuchElementFoundException;
 import br.com.residencia.biblioteca.service.LivroService;
 
 @RestController
@@ -38,21 +39,25 @@ public class LivroController {
 	public ResponseEntity<List<LivroDTO>> getAllLivrosEmprestimosDTO(){
 		return new ResponseEntity<>(livroService.getAllLivrosEmprestimosDTO(), HttpStatus.OK);	
 	}
-	/*
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<Livro> getLivroById(@PathVariable Integer id) {
+		try {
 		Livro livro = livroService.getLivroById(id);
-		if(null != livro)
+		//if(null != livro)
 			return new ResponseEntity<>(livro, HttpStatus.OK);
-		else
-			return new ResponseEntity<>(livro, HttpStatus.NOT_FOUND);
+		}catch (Exception e) {
+			throw new NoSuchElementFoundException("Não foi encontrado livro com o id " + id);	
+		}
 	}
-	*/
+
+	/*
 	@GetMapping("/{id}")
 	public Livro getLivroById(@PathVariable Integer id) {
 		Livro livro = livroService.getLivroById(id);
 		return livro;
 	}
+	*/
 	
 	@PostMapping
 	public ResponseEntity<Livro> saveLivro(@RequestBody Livro livro) {
