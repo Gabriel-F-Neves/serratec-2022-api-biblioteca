@@ -2,6 +2,7 @@ package br.com.residencia.biblioteca.exception;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,4 +33,16 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
 	}
+	
+	@ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<Object> handleNoSuchElementException(
+    		final NoSuchElementException ex,
+            final WebRequest request) {
+		List<String> detalhes = new ArrayList<>();
+		detalhes.add(ex.getLocalizedMessage());
+		ErrorResponse error = new ErrorResponse(HttpStatus.NOT_FOUND.value(), 
+				"O Registro buscado não foi encontrado", detalhes);
+
+		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
 }
