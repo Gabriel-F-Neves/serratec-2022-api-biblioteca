@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -31,6 +33,8 @@ public class Aluno {
 	@Column(name = "datanascimento")
 	private Instant dataNascimento;
 
+	@NotBlank(message = "O cpf é obrigatório.")
+	@Pattern(regexp="^[0-9]{11}", message = "O CPF deve conter apenas números e 11 caracteres")
 	@Column(name = "cpf")
 	private String cpf;
 
